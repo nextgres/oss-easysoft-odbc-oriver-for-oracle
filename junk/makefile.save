@@ -1,0 +1,22 @@
+
+all:malloctest.o malloctest connect1 connect2 insert1
+
+malloctest:malloctest.o
+	gcc malloctest.o ../mem_functions.o -o malloctest
+
+malloctest.o:malloctest.c
+	gcc -g -c malloctest.c -I ..
+
+connect1:connect1.c
+	gcc connect1.c -L$(UNIXODBC_DIR)/lib -lodbc \
+	-I$(UNIXODBC_DIR)/include -o connect1
+
+connect2:connect2.c
+	gcc connect2.c -L$(UNIXODBC_DIR)/lib -lodbc \
+	-I$(UNIXODBC_DIR)/include -o connect2
+
+insert1:insert1.c  
+	gcc insert1.c -L$(UNIXODBC_DIR)/lib -lodbc \
+	-I$(UNIXODBC_DIR)/include -o insert1
+clean:
+	rm malloctest.o malloctest connect1 connect2 insert1.c

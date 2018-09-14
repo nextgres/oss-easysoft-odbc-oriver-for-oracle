@@ -1,0 +1,45 @@
+This is release 0.5.0 of the  Oracle Odbc Driver originally
+developed by EasySoft LTD - www.easysoft.com.  They eventally
+lost interest in maintaining the code, it has been picked up
+by me (Dennis Box, dbox@fnal.gov).  Contributions to this
+effort (patches, fixes, observations not $$$) are welcomed.
+
+A project page is currently at fndapl.fnal.gov/~dbox/oracle/odbc/
+The cvs $Ids of the files in this release are in a file
+called 'manifest' in this directory
+
+Changes from 0.4.0pre1:
+
++Transaction, commit, rollback support enabled.
+
++Extensive tracing capabilities added, set DEBUG environment
+ variable to some integer, the higher the number the chattier
+ it gets.
+
++Binding of various datatypes fixed.
+
++Test suite added.
+
+-----------------------------------------------------
+To build, test, and run:
+
+This release has been fairly well tested on Red Hat Linux 6.5
+and 7.1 using oracle 8.05 through 9.2.  The auto-config files
+may have problems for other architectures and I would welcome
+contributions to fix these types of problems.  That said,
+configure, make, make install, and make check all should work
+as they do on GNU projects.  If this fails, see the configure_local
+script in this directory for configure options that I use.
+
+See the 'bootstrap'  script in this directory if both configure
+and configure_local fail to re-build the automake files for
+your local environment.
+
+There is a problem right now with the 'make check' target, 
+make install has to be run first, thats right you have to 
+install it before you can test it which should be fixed.  If
+you know how,  please drop me a line.  To successfully run
+make check several environment variables need to be set up
+first, see test/check_oracle_environment for details.
+
+

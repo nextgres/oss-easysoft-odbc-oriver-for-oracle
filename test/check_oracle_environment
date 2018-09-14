@@ -1,0 +1,178 @@
+#!/bin/sh 
+#oracle environment tester
+#author: Dennis Box, dbox@fnal.gov
+#May 2002
+echo
+echo
+echo This script tests for important environment variables that must be set
+echo in order for the oracle_odbc_driver tests to function correctly.
+echo if this script complains about anything you probably must fix it
+echo in order to test the driver
+echo
+echo
+echo
+
+#-------------------------------------------
+echo -n "checking for ORACLE_HOME..."
+#-------------------------------------------
+if  [ -n "$ORACLE_HOME" ]   ; then
+    echo -n ".."
+else
+    echo ORACLE_HOME not found! Check your oracle installation
+    exit -1
+fi
+if  [ -d $ORACLE_HOME ]   ; then
+    echo OK
+else
+    echo ORACLE_HOME not found! Check your oracle installation
+    exit -1
+fi
+
+#-------------------------------------------
+echo -n "checking for TNS_ADMIN..."
+#-------------------------------------------
+if [ -n "$TNS_ADMIN" ]  ; then
+    echo -n ".."
+else
+    echo TNS_ADMIN  not found! Check your oracle installation
+    exit -1
+fi
+if [ -d $TNS_ADMIN ]  ; then
+    echo .OK
+else
+    echo TNS_ADMIN  not found! Check your oracle installation
+    exit -1
+fi
+
+#-------------------------------------------
+echo -n "checking for tnsnames.ora file...."
+#-------------------------------------------
+if [ -r $TNS_ADMIN/tnsnames.ora ]  ; then
+    echo OK
+else
+    echo TNS_ADMIN/tnsnames.ora  not found! Check your oracle installation
+    exit -1
+fi
+
+#-------------------------------------------
+echo -n "checking TWO_TASK environment variable... "
+#-------------------------------------------
+if [ -n "$TWO_TASK" ]  ; then
+    echo OK
+else
+    echo TWO_TASK  not found! Check your oracle installation
+    exit -1
+fi
+
+
+
+#-------------------------------------------
+echo -n  "checking that oracle client knows about $TWO_TASK... "
+#-------------------------------------------
+
+cmd="grep -i $TWO_TASK $TNS_ADMIN/tnsnames.ora"
+
+rslt=`$cmd`;
+if [ -n "$rslt" ] ; then
+	echo ..OK
+    else
+	echo .....FAILED tnsnames.ora must contain reference to $TWO_TASK !
+	exit -1
+fi
+
+#-------------------------------------------
+echo -n "checking ORACLE_USER environment variable... "
+#-------------------------------------------
+if [ -n "$ORACLE_USER" ]  ; then
+    echo OK
+else
+    echo ORACLE_USER  not found! \'make check\' target will fail
+    exit -1
+fi
+
+#-------------------------------------------
+echo -n "checking ORACLE_PSWD environment variable... "
+#-------------------------------------------
+
+if [ -n "$ORACLE_PSWD" ]  ; then
+    echo OK
+else
+    echo ORACLE_PSWD  not found! \'make check\' target will fail
+    exit -1
+fi
+
+#-------------------------------------------
+echo -n "checking ODBCSYSINI environment variable..."
+#-------------------------------------------
+if [ -s "$ODBCSYSINI" ]  ; then
+    echo OK
+else
+    echo ODBCSYSINI  not found! check your unixODBC installation
+    exit -1
+fi
+
+#-------------------------------------------
+echo -n  "checking that unixODBC knows about oraodbc driver. "
+#-------------------------------------------
+
+cmd="grep oraodbc $ODBCSYSINI/odbcinst.ini"
+
+rslt=`$cmd`;
+if [ -n "$rslt" ] ; then
+	echo ..OK
+    else
+	echo .....FAILED $ODBCSYSINI/odbcinst.ini  must contain reference to oraodbc, the driver we are testing !!!!
+	exit -1
+fi
+
+
+#-------------------------------------------
+echo -n "checking for a local .odbc.ini file... "
+#-------------------------------------------
+
+if [ -r $HOME/.odbc.ini ]  ; then
+    echo OK
+else
+    echo $HOME/.odbc.ini  not found! check your unixODBC installation
+    exit -1
+fi
+#
+##-------------------------------------------
+#echo -n "checking oracle library version... "
+##-------------------------------------------
+#
+#cmd="$ORACLE_HOME/bin/sqlplus /nolog "
+#rslt=`$cmd < /dev/null`;
+#rslt2=`echo $rslt | grep '8.1.[67]'  `;
+#
+#
+#if [ -n "$rslt2" ] ; then
+#	echo
+#	echo
+#        echo 8.1.6 and 8.1.7 libraries are subject to a  bug
+#        echo which causes a core dump on exit.  This can be
+#	echo fixed with the following command:
+#	echo
+#	echo '(csh)$ setenv LD_PRELOAD $ORACLE_HOME/lib/libclntsh.so'
+#	echo '  -or- '
+#	echo '(sh)$ export LD_PRELOAD=$ORACLE_HOME/lib/libclntsh.so'
+#	echo
+#	echo -n checking LD_PRELOAD.....
+#	if [ -n "$LD_PRELOAD" ]  ; then
+#	    echo OK
+#	else
+#	    echo LD_PRELOAD  not found! \'make check\' targets will core
+#	    echo dump on exit
+#	    exit -1
+#	fi
+#   else
+#        echo OK
+#  
+#fi
+#
+echo
+echo ENVIRONMENT LOOKS OK!  you still need to make sure that 
+echo user $ORACLE_USER has a valid login on $TWO_TASK database 
+echo
+
+exit 0

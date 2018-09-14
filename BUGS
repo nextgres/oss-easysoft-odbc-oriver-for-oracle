@@ -1,0 +1,10 @@
+
+Apart from problems arising from partially implemented functions, the 
+following problems are known about.
+
+SQLDisconnect with multiple threads.
+ When using multiple threads to create multiple connections within the 
+ same application, SQLDisconnect occasionally goes into infinite loop. 
+ Tue May 23 10:20:56 BST 2000 - we think we've fixed this, but it will need
+ further testing
+

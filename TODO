@@ -1,0 +1,20 @@
+
+The Oracle Driver is still far from complete. Among the tasks left are
+(in no particular order)...
+
+ Bookmarks.
+
+ LOBs, LONGs, SQLParamData and SQLPutData
+
+ National Language Support (WCHARS). 
+
+ Transactions. (DONE!!!!!! dbox)
+
+ Bulk Operations. (started, bulk reads seem to work dbox)
+
+ The rest of the handle attribute/field/recs functions.
+
+ SQLSpecialColumns(SQL_BEST_ROWID,...) always returns ROWID. ROWID is not 
+ always valid. A quick and easy method of testing its validity is needed.
+
+ SQLStatistics completely ignores SQL_QUICK and SQL_ENSURE.

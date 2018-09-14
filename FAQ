@@ -1,0 +1,96 @@
+                 =============================================
+                 Oracle ODBC Driver Frequently Asked Questions
+                 =============================================
+
+ 1 What are the configuration parameters for the odbc.ini / connection string?
+ 2 What should I put in the DB parameter in the odbc.ini / connection string?
+ 3 Do I need a tnsnames.ora file? 
+ 4 Do I need a sqlnet.ora file?
+ 5 Where do I put tnsnames.ora / sqlnet.ora?
+ 6 SQLForeignKeys takes a very long while to return.
+
+
+ 1 What are the configuration parameters for the odbc.ini / connection string?
+
+   The driver specific parameters that may be specified in the odbc.ini are
+   DB = <global-database-identifier>
+   USER = <user>
+   PASSWORD = <password>
+   Trace = [ Yes | No ]
+   TraceFile = <filespec>
+
+   Trace defaults to No if not specified. 
+   TraceFile defaults to /tmp/oracle.log
+
+   The driver specific parameters that may be specified in the connection 
+   string (or SQLConnect parameters) are
+   DB = <global-database-identifier>
+   UID = <user>
+   PWD = <password>
+
+   DB, UID and PWD override the DB, USER and PASSWORD parameters of the 
+   odbc.ini.
+
+   If either UID or PWD are given in the connect parameters, then 
+   (respectively) USER and PASSWORD need not be specified in the odbc.ini.
+   If no DB is specified at all, an attempt will be made to connect to the 
+   "default database"
+
+
+ 2 What should I put in the DB parameter in the odbc.ini / connection string?
+
+   The content of the DB parameter is passed drirectly through to the Oracle
+   client, which has several ways in which it can try to resolve the name.
+   
+   Commonly the server listener will have an entry of the same name as its 
+   fully qualified domain, so if the server is oracle.mydomain.com entering 
+   this as the DB parameter is often sufficient.
+
+   Also common is the presence of the ORACLE_SID environment variable. If this
+   is present and the surrounding setup is correct, an empty or omitted DB 
+   parameter should ensure a connection.
+   
+   Other than these two options, the DB parameter will need to be the 
+   database identifier as described by the local naming scheme (tnsnames.ora,
+   sqlnet.ora)
+
+
+ 3 Do I need a tnsnames.ora file? 
+
+   If the server has a listener entry of the same name as its fully qualified
+   domain name, you will not need a tnsnames.ora file (use the FQDN of the 
+   server).
+
+   If the database specified by the FQDN listener entry on the server is not
+   the database that you wish to access or the server does not have a listener
+   entry equal to its FQDN, then a tnsnames.ora file is a common way of 
+   specifying more explicitly how to connect to the correct database.
+
+   A "quick start" to tnsnames.ora is given on the easysoft.org www site at
+   http://www.easysoft.org/projects/oracle/docs.phtml
+   The Oracle Net8 Adminsitrator's Guide gives full details
+
+
+ 4 Do I need a sqlnet.ora file?
+
+   If you use any extra security features, an Oracle names server or have an
+   unusual name resolution system, you may require a sqlnet.ora. 
+   The Oracle Net8 Adminsitrator's Guide gives full details.
+   
+   A "quick start" to sqlnet.ora is given on the easysoft.org www site at
+   http://www.easysoft.org/projects/oracle/docs.phtml
+   The Oracle Net8 Adminsitrator's Guide gives full details
+   
+
+ 5 Where do I put tnsnames.ora / sqlnet.ora?
+
+   The "official" place to put them is in the network/admin subdirectory of 
+   the directory specified in the ORACLE_HOME environment variable.
+   They also (may) work if placed in /etc, but not in /usr/local/etc
+
+ 6 SQLForeignKeys takes a very long while to return.
+
+   There are an enormous number of possible key combinations even in an Oracle
+   database with very few user tables. 
+
+$Id: FAQ,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $

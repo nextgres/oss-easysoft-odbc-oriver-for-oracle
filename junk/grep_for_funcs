@@ -1,0 +1,117 @@
+SQLAllocHandle.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLAllocHandle.c: * $Log: grep_for_funcs,v $
+SQLAllocHandle.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLAllocHandle.c: * second try, importing code into directories
+SQLAllocHandle.c: *
+SQLAllocHandle.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLAllocHandle.c:SQLRETURN _SQLAllocHandle( 
+SQLAllocHandle.c:SQLRETURN SQL_API SQLAllocHandle( 
+SQLAllocHandle.c:    return _SQLAllocHandle( HandleType, InputHandle, OutputHandlePtr );
+SQLGetConnectAttr.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLGetConnectAttr.c: * $Log: grep_for_funcs,v $
+SQLGetConnectAttr.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLGetConnectAttr.c: * second try, importing code into directories
+SQLGetConnectAttr.c: *
+SQLGetConnectAttr.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLGetConnectAttr.c:SQLRETURN SQL_API SQLGetConnectAttr(
+SQLBrowseConnect.c: * _SQLDriverConnect -> ood_SQLDriverConnect
+SQLBrowseConnect.c:        status= ood_SQLDriverConnect(ConnectionHandle,NULL,
+SQLDriverConnect.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLDriverConnect.c: * $Log: grep_for_funcs,v $
+SQLDriverConnect.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLDriverConnect.c: * second try, importing code into directories
+SQLDriverConnect.c: *
+SQLDriverConnect.c: * _SQLDriverConnect -> ood_SQLDriverConnect
+SQLDriverConnect.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLDriverConnect.c:SQLRETURN ood_SQLDriverConnect(
+SQLDriverConnect.c:SQLRETURN SQL_API SQLDriverConnect(
+SQLDriverConnect.c:    return ood_SQLDriverConnect(ConnectionHandle,WindowHandle,
+SQLBrowseConnect.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLBrowseConnect.c: * $Log: grep_for_funcs,v $
+SQLBrowseConnect.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLBrowseConnect.c: * second try, importing code into directories
+SQLBrowseConnect.c: *
+SQLBrowseConnect.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLBrowseConnect.c:SQLRETURN SQL_API SQLBrowseConnect(
+SQLDisconnect.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLDisconnect.c: * $Log: grep_for_funcs,v $
+SQLDisconnect.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLDisconnect.c: * second try, importing code into directories
+SQLDisconnect.c: *
+SQLDisconnect.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLDisconnect.c:SQLRETURN SQL_API SQLDisconnect(
+SQLCloseCursor.c:    status=_SQLFreeStmt(StatementHandle,SQL_CLOSE);
+SQLFreeHandle.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLFreeHandle.c: * $Log: grep_for_funcs,v $
+SQLFreeHandle.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLFreeHandle.c: * second try, importing code into directories
+SQLFreeHandle.c: *
+SQLFreeHandle.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLFreeHandle.c:        _SQLFreeHandle(SQL_HANDLE_STMT,(SQLHANDLE)list);
+SQLFreeHandle.c: * Local implemtation of SQLFreeHandle.
+SQLFreeHandle.c:SQLRETURN _SQLFreeHandle(
+SQLFreeHandle.c:SQLRETURN SQL_API SQLFreeHandle(
+SQLFreeHandle.c:    return _SQLFreeHandle( HandleType, Handle );
+SQLFreeStmt.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLFreeStmt.c: * $Log: grep_for_funcs,v $
+SQLFreeStmt.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLFreeStmt.c: * second try, importing code into directories
+SQLFreeStmt.c: *
+SQLFreeStmt.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLFreeStmt.c: * SQLFreeStmt can be called from SQLCloseCursor
+SQLFreeStmt.c:SQLRETURN _SQLFreeStmt(
+SQLFreeStmt.c:        status=_SQLFreeHandle(SQL_HANDLE_STMT,(SQLHANDLE)StatementHandle);
+SQLFreeStmt.c:SQLRETURN SQL_API SQLFreeStmt(
+SQLFreeStmt.c:    return _SQLFreeStmt(StatementHandle,Option);
+CHAPTER 8 FUNCTIONS
+SQLDataSources and SQLDrivers implemented in Driver Manager
+SQLGetInfo.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLGetInfo.c: * $Log: grep_for_funcs,v $
+SQLGetInfo.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLGetInfo.c: * second try, importing code into directories
+SQLGetInfo.c: *
+SQLGetInfo.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLGetInfo.c:SQLRETURN SQL_API SQLGetInfo(
+SQLGetFunctions.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLGetFunctions.c: * $Log: grep_for_funcs,v $
+SQLGetFunctions.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLGetFunctions.c: * second try, importing code into directories
+SQLGetFunctions.c: *
+SQLGetFunctions.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLGetFunctions.c:SQLRETURN SQL_API SQLGetFunctions(
+SQLGetFunctions.c: * Added SQLGetTypeInfo
+SQLGetTypeInfo.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLGetTypeInfo.c: * $Log: grep_for_funcs,v $
+SQLGetTypeInfo.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLGetTypeInfo.c: * second try, importing code into directories
+SQLGetTypeInfo.c: *
+SQLGetTypeInfo.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLGetTypeInfo.c:SQLRETURN SQL_API SQLGetTypeInfo(
+SQLGetEnvAttr.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLGetEnvAttr.c: * $Log: grep_for_funcs,v $
+SQLGetEnvAttr.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLGetEnvAttr.c: * second try, importing code into directories
+SQLGetEnvAttr.c: *
+SQLGetEnvAttr.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLGetEnvAttr.c:SQLRETURN SQL_API SQLGetEnvAttr(
+SQLSetEnvAttr.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLSetEnvAttr.c: * $Log: grep_for_funcs,v $
+SQLSetEnvAttr.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLSetEnvAttr.c: * second try, importing code into directories
+SQLSetEnvAttr.c: *
+SQLSetEnvAttr.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLSetEnvAttr.c:SQLRETURN SQL_API SQLSetEnvAttr(
+SQLSetConnectAttr.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLSetConnectAttr.c: * $Log: grep_for_funcs,v $
+SQLSetConnectAttr.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLSetConnectAttr.c: * second try, importing code into directories
+SQLSetConnectAttr.c: *
+SQLSetConnectAttr.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLSetConnectAttr.c:SQLRETURN SQL_API SQLSetConnectAttr(
+SQLGetStmtAttr.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
+SQLGetStmtAttr.c: * $Log: grep_for_funcs,v $
+SQLGetStmtAttr.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
+SQLGetStmtAttr.c: * second try, importing code into directories
+SQLGetStmtAttr.c: *
+SQLGetStmtAttr.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
+SQLGetStmtAttr.c:SQLRETURN SQL_API SQLGetStmtAttr(

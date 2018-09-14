@@ -1,0 +1,16 @@
+Test Run By dbox on Wed Feb  6 15:24:54 2002
+Native configuration is i686-pc-linux-gnu
+
+		=== oracle tests ===
+
+Schedule of variations:
+    unix
+
+Running target unix
+Using /usr/products/Linux/dejagnu/v1_4_1/share/dejagnu/baseboards/unix.exp as board description file for target.
+Using /usr/products/Linux/dejagnu/v1_4_1/share/dejagnu/config/unix.exp as generic interface file for target.
+WARNING: Couldn't find tool config file for unix, using default.
+
+		=== oracle Summary ===
+
+runtest completed at Wed Feb  6 15:24:54 2002

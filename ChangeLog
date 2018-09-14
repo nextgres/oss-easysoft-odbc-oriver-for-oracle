@@ -1,0 +1,217 @@
+                    =====================================
+                    Easysoft Oracle ODBC Driver ChangeLog
+                    =====================================
+
+The latest changes in cvs are also documented at:
+http://home.fnal.gov/~dbox/oracle/odbc/devlog.html 
+
+begin dbox@fnal.gov (and contributers)  changes:
+
+2005/11/1
+
+
+    * Fixed memory leak Turns out ORAFREE() followed by repeated OCIEnvCreate * leaks memory. Code has been * modified so OCIEnvCreate is called only once
+    * ORACLE Binary Float and Binary Double support added 
+
+
+2004/12/01
+	Changes to SQLBindCol (was incorrectly setting an 
+	internal flag to SQL_NULL_DATA) and SQLSetStmtAttr (was
+	NOT resetting internals when SQL_ATTR_ROWS_FETCHED_PTR
+	indicated it should).  These changes make the driver work
+	*much* better with libodbc++, so much that a new release
+	is warranted. 
+
+2004/8/2
+     Unit tests modified to exercise SQLCancel, SQLColumns, SQLGetStmtAttr,
+     SQLParamData, SQLPutData
+
+2004/6/11 Changes contributed by Steven Reynolds , sreynolds@bradmark.com
+
+   1. Fixes to SQLColumns.c and oracle_functions.c to clean 
+	up some size/type mismatches that resulted in core dumps. 
+
+2004/6/10
+   1. Changes to SQLDriverConnect.c and SQLConnect.c to take a
+      closer look at the odbc.ini file, if it exists, to look
+      for username, password, and database.  Different ini files
+      'in the wild' sometimes say DB=, sometimes DATABASE=, 
+      sometimes USER=, or UID= so this should catch them. I hope.
+
+2004/05/05
+   1. Changes to return codes for SQLExectDirect for bad select statements.
+
+2003/12/15 Changes contributed by Steven Reynolds , sreynolds@bradmark.com
+
+   1. SQLFreeHandle.c: Change order of frees in _SQLFreeHandle(). 
+      Free oci_stmt handle first before other oci handles. Oracle OCI 
+      code was touching freed memory.
+   2. SQLGetConnectAttr.c: SQLGetConnectAttr() was setting the commit mode.
+   3. SQLGetDiagRec.c: Remove call to ood_clear_diag in SQLGetDiagRec(). 
+      Otherwise client code was unable to get log messges.
+   4. diagnostics.c: ood_post_diag() is allocates new error nodes, but code 
+      didn't set all fields. Change malloc to calloc.
+   5. oracle_functions.c: ood_driver_prepare() allocated a new oci 
+      statement with out freeing the existing one.
+   6. oracle_functions.c: ocivnu_sqlslong() passed to OCI code sizeof(long), 
+      but buflen was 4. This failed on Tru64 where sizeof(long) is 8. 
+      Change to pass min of these two values. Same in ocivnu_sqlulong(). 
+
+2003/02/11 fixed a problem with array inserts, SQLSetStmtAttr and 
+SQLGetStmtAttr for parameters SQL_ATTR_PARAMSET_SIZE and 
+SQL_ATTR_PARAM_BIND_TYPE are now functional
+
+2003/02/10 change off-by-one error in month i/o for dates. Thanks to 
+Gordon.Read@ranplc.co.uk
+
+2003/02/03 added some data types that SQLColumns can identify
+
+2003/01/30 Fixes for SQLColAttributes and underlying oracle_functions.c 
+to return correct values for most column types when given SQL_DESC_TYPE 
+or SQL_DESC_TYPE_NAME inputs. Fixed unit tests to reflect this new behavior
+
+2003/01/18 Fixed unit tests to work on solaris, configure/make mostly 
+works on solaris except that gmake fails until ltmain.sh is made executable 
+with chmod+x
+
+2003/01/17 Contributions by Robin Whitworth, rwhit@goldwiretech.com
+
+   1. SQLFetch.c - There was a bug in SQLFetch() if row_status_ptr is not set.
+   2. SQLPrimaryKeys.c - There was a join constraint missing in the query. Also, the results were not being ordered correctly.
+   3. common.c,h; oracle_functions.c - in ood_driver_execute_describe, the 
+      address of the data_size field of an implementation row descriptor 
+      (IR_TAG) is being passed to OCIAttrGet for the OCI_ATTR_DATA_SIZE 
+      attribute. This should be a ub2, not a ub4. (Probably works OK on 
+      linux due to differing byte ordering. Fails miserably on solaris). 
+      I changed the definition in common.h & the initializations in 
+      common.c & oracle_functions.c
+   4. . common.h - the macro GLOBAL_MUTEX_LOCK was wrong. It was doing an 
+      unlock! Our code uses 4 or more database threads and this caused 
+      the lexer to break.
+   5. sqllex.l - the lexer was stripping newlines. This caused problems 
+      where the only whitespace between to tokens was a newline. I modified 
+      it to preserve newlines - oracle handles them fine, so no need to 
+      strip or convert them.
+
+2003/01/06 fix for "constructor" of ip_tag and ap_tag, filter out 
+      trailing semicolons from sql as the minos source code is chock 
+      full of them. Added functionality to SQLGetInfo
+2002/12/11 Automake and config cleanups contributed by 
+      Stefan.Radman@ctbto.org also a bug fix to ocivnu_sqlnts in 
+      oracle_functions.c
+2002/11/14 Changed various unimplemented functions/attributes to 
+      return SQL_SUCCESS_WITH_INFO and a IM001 status message instead of 
+      SQL_ERROR. My reading of the documentation leads me to believe this 
+      is the correct behavior.
+
+2002/08/13 Fixed problem with unit-test of array inserts. All 19 unit 
+tests report success now. The array inserts work properly and
+probably always have, my unit test died on an assertion after informing 
+the driver that it was about to perform an array insert. 
+Cleaned up SQLGetInfo and SQLSetStmtAttr, gettting rid of lots of 
+ugly #ifdefs while retaining functionality they supported. 
+
+2002/06/26 fixed bind problem in oracle_functions.c which bound 
+string characters with incorrect buffer length. Bound string inserts now
+work properly. 
+
+2002/06/24 Installed extensive tracing facilities. Setenv DEBUG 2 
+reports on all SQLxxx functions called along with input parameters and
+return status. Setenv DEBUG 3 reports on all OCIxxx functions 
+called along with input parameters and return status. 
+
+2002/06/06 fixed LD_PRELOAD/core dump problem for oracle 8.1.6 and 8.1.7 
+
+2002/05/31 added reasonable comments to the unit tests fixed SQLPrepare 
+so that it allocates space in the statement for the column ap
+and ir descriptors instead of waiting for SQLBindCol to do it. 
+This defect was causing libodbc++ (and hence RDBC) to core dump. 
+
+2002/05/24 fixed a buffer overflow in getinfo1.c unit test program 
+
+2002/05/23 refinements to unit tests, detect oracle client version and 
+warn of 8.1.6/7 bug 
+
+2002/05/22 more test tweaking, added a unit test to check for all the 
+unixODBC and ORACLE environment setup that must happen prior
+to the c programs in the test subdirectory executing successfully. 
+
+2002/05/16 new unit test to exercise SQLGetInfo.c more fully, tests all 
+valid inputs at the level of 'it accepts them and doesnt core dump'.
+Testing all 177 valid inputs for correct functioning will take some effort! 
+
+2002/05/14 bug fixes to some malloc/free code, added 'constructors' 
+for ar and ir environment handles and asserts to try to catch struct
+corruption at earliest possible time. 
+
+2002/05/09 changed/added some unit tests 
+
+2002/05/02 fixed unused var warnings and flow of control problems 
+found by insure++ 
+
+2002/04/03 SQLGetInfo.c now correctly reports that it supports transactions 
+more testing of transaction capability 
+
+2002/03/08 added commit/rollback capability through SQLEndTran, more 
+tests for SQLColAttribute 
+
+2002/03/06 took out spurious warning about stubbed function in SQLRowCount.c 
+Changed oracle_functions.c to deal with float(126) and
+integer (actually NUMBER(38,0) more correctly. 
+
+2002/03/05 added functionality to oracle_functions.c more extensive 
+testing of SQLColAttribute and SQLDescribeCol 
+
+2002/02/26 more directory cleanup, remove generated files (i.e. Makefile) 
+that automake should take care of from repository. 
+
+2002/02/23 added some missing cases to the switch statement of 
+SQLColAttribute.c 
+
+2002/02/20 changed error reporting for stubbed out functions. Added 
+function calls to unit tests in 'test' subdirectory. 
+
+2002/02/11 rearranged project into subdirectories, featuring ./src 
+and ./test subdirectories and re-worked Makefile.am Makefile.in etc.
+Changed malloc/realloc/free function calls to GNU-style ORAMALLOC, 
+ORAREALLOC, and ORAFREE macros which should
+prevent double-freeing, or proceeding if memory is exhausted. 
+
+
+begin easysoft.com changes:
+
+	
+
+Wed Jul  5 12:06:05 2000 tom@easysoft.com (Tom Fosdick)
+
+    Basic block cursor implementation complete
+
+Wed Jun 14 09:31:55 2000 tom@easysoft.com (Tom Fosdick)
+
+    Fixed data type problems with catalog functions
+    Added SQLTablePrivs, SQLColumnPrivs
+    Added SQLGet/SetStmtAttr (although far from complete)
+
+Mon Jun  5 10:34:27 2000 tom@easysoft.com (Tom Fosdick)
+
+    Initial bound params implemetation finished
+
+Thu May 25 13:37:37 2000 tom@easysoft.com (Tom Fosdick)
+
+    Fixed ROWID
+    Completed first iteration of the ODBC->Oracle SQL translator
+
+Tue May 16 10:15:26 2000 tom@easysoft.com (Tom Fosdick)
+
+    Library switching changes to allow it to use both libclntsh.so.1 and
+    libclntsh.so.8
+
+Wed May 10 11:16:40 2000 tom@easysoft.com (Tom Fosdick)
+
+    SQLStatistics added
+
+
+Tue May  9 09:10:52 2000 tom@easysoft.com (Tom Fosdick)
+
+    Somewhat late start of the ChangeLog file
+

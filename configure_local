@@ -1,0 +1,2 @@
+#!/bin/sh -x
+./configure --prefix=$ORAODBC_DIR --with-unixODBC=$UNIXODBC_DIR

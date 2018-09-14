@@ -1,0 +1,37 @@
+#!/bin/sh 
+
+set LD_PRELOAD $ORACLE_HOME/lib/libclntsh.so
+export LD_PRELOAD
+
+should_pass='connect1 connect2 direct_exec1 direct_exec2 insert1 insert3 read1 read2 read3 rollback1 commit1'
+should_not_pass='malloctest'
+should_pass_but_wont='insert2 '
+
+for cmd in `echo ${should_pass}` ; do
+	echo -n  running $cmd
+	if  $cmd  ; then
+	    echo .....PASSED
+	else
+	    echo .....FAILED
+	fi
+done
+
+
+for cmd in `echo ${should_not_pass}` ; do
+	if  $cmd  ; then
+	    echo .....PASSED BUT SHOULDNT HAVE
+	else
+	    echo .....FAILED BUT THIS IS OK
+	fi
+done
+
+for cmd in `echo ${should_pass_but_wont}` ; do
+	echo   running $cmd  
+	echo this is known to fail
+	if  $cmd  ; then
+	    echo .....PASSED
+	else
+	    echo .....FAILED
+	fi
+done
+

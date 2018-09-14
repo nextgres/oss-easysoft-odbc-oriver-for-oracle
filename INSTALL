@@ -1,0 +1,115 @@
+                           ===========================
+                           Easysoft Oracle ODBC Driver
+                           ===========================
+
+Installation instructions for unix platforms.
+
+
+Binary Distributions
+********************
+
+Both rpm and tar.gz binary distributions default to install under the 
+/usr/local tree. rpms can be installed as follows
+
+# rpm -Uhv oracle-0.x.x-x.rpm
+
+.tar.gz packages can be installed on most systems using
+# cd /
+# gzip -dc <path to>/oracle-0.x.x-x.rpm | tar xvf -
+
+
+Building from Source
+********************
+
+For dependencies and instructions on obtaining the source code please refer to 
+the README.
+
+If you have obtained a version directly from the CVS repositiory you should
+cd to the oracle directory and issue;
+$ make -f Makefile.cvs
+
+In most cases the configure script will be able to determine the necessary 
+information in order to compile. The following command line options may be
+useful.
+
+ --with-unixODBC[=DIR]  This is useful if the unixODBC driver manager libraries
+     have been installed outside of the system library path.
+
+ --without-unixODBC  Configure without looking for the unixODBC headers or 
+     libraries. You will need to provide the include and linking mechanisms
+	 for odbc in some other way.
+     
+ --with-oraclehome[=DIR] If you do not have the ORACLE_HOME environment
+     variable set or wish to override it, this specifies the root of the
+     Oracle product installation (typically /oracle/product/8.1.5)
+
+ --prefix=DIR indicates that the driver should be installed under a directory
+     tree other than /usr/local
+ 
+ --enable-trace[=yes|no] this enables/disables ODBC tracing. Even with tracing
+     turned off it can be a significance performance hit if compiled in, so
+     this options should be considered akin to a debug option.
+	
+ --enable-user-catalog[=yes|no] A call to SQLTables on the standard Oracle 
+     catalog (ALL_CATALOG table) returns around 5000 rows even before user
+	 entities are taken into account. Many applications will never need 
+	 catalog data about these entites, and using the user_ tables rather
+	 than the all_ views/tables can vastly reduce the cost of catalog 
+	 functions.
+
+ --enable-symbol-hack[=yes|no] some versions of the Oracle client library 
+     have an undefined symbol in them (slpmprodstab). This workaround defines
+	 this symbol as an integer in the driver. This *seems* to work, but it
+	 should not be considered a safe workaround.
+
+After a successful configuration, you should simply be able to issue a make
+and make install.
+$ make
+$ make install
+
+Please be aware that this code is under constant development, hence the latest
+code from CVS and possibly the latest snapshot release may not function
+correctly and may not even compile correctly on your platform.
+You are welcome to contribute to the development effort :- please see the end
+of the README. :)
+
+
+Configuration
+*************
+
+After the driver has been installed, it will need to be entered into your
+driver manager's configuration and data source(s) added. As yet there is no
+GUI configuration library (if someone would like to write one...) so this will
+have to be done either with a tool such as odbcinst or manually.
+
+For unixODBC you need to add the driver to odbcinst.ini. If you have used the
+default prefix of /usr/local, you can cut and paste the following onto the
+end of odbcinst.ini or use it as a template for the odbcinst utility. If you
+have installed the library somewhere other than /usr/local, you will need to
+edit the following accordingly.
+
+[oracle-driver]
+Description     = Easysoft Oracle Driver
+Driver          = /usr/local/lib/liboraodbc.so
+Setup           = 
+FileUsage       = 1
+
+For installation of a data source, again the following can be be either 
+appended to the relevent odbc.ini or used as a template for the odbcinst
+utility. Most people will need to edit the database identifier (DB), the 
+user name (USER) and password (PASSWORD). None of these parameters are
+required and can all in fact be overridden on the connection string 
+(DB,UID,PWD).
+Both Trace and TraceFile are ignored if tracing is not compiled in (as in 
+binary versions). More information is given in the FAQ.
+
+[oracle]
+Driver = oracle-driver
+Description = 
+DB = global.database.id
+USER = scott
+PASSWORD = tiger
+Trace = No
+TraceFile = Yes
+
+$Id: INSTALL,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
