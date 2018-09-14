@@ -7,13 +7,6 @@ http://home.fnal.gov/~dbox/oracle/odbc/devlog.html
 
 begin dbox@fnal.gov (and contributers)  changes:
 
-2005/11/1
-
-
-    * Fixed memory leak Turns out ORAFREE() followed by repeated OCIEnvCreate * leaks memory. Code has been * modified so OCIEnvCreate is called only once
-    * ORACLE Binary Float and Binary Double support added 
-
-
 2004/12/01
 	Changes to SQLBindCol (was incorrectly setting an 
 	internal flag to SQL_NULL_DATA) and SQLSetStmtAttr (was

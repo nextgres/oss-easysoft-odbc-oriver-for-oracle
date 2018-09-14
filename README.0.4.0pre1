@@ -1,0 +1,30 @@
+=============================================
+Oracle ODBC Driver - Release oracle-0.4.0pre1
+=============================================
+
+   All the major features of release 0.4.0 have now been implemented.
+   However, there are still issues to be resolved.
+
+   I will be on holiday/vaction from 22 July to 06 August 2000, so in order to
+   make use of this time I've put together this testing distribution
+   "straight from my desktop" as it were.
+
+   Any problems / comments / bugfixes / patches / workarounds should be 
+   posted to the newsgroup at news://news.easysoft.com/easysoft.beta.oracle, 
+   which should also be your first port of call in tackling any undocumented
+   problems.
+
+   The following resources may also prove useful.
+     * The unixODBC homepage (http://www.unixodbc.org/)
+     * The unixODBC mailing list archive
+           (news://news.easysoft.com/easysoft.beta.unixodbc)
+     * Oracle technet (http://technet.oracle.com/) including
+          + Release 8.1.6 docs (http://technet.oracle.com/doc/oracle8i_816/)
+          + 8i server docs     (http://technet.oracle.com/doc/server815.htm)
+          + 8.0.x server docs  
+               (http://technet.oracle.com/docs/products/oracle8/doc_index.htm)
+     * The underground Oracle FAQ (http://www.orafaq.org)
+     * The FreeODBC homepage (http://users.ids.net/~bjepson/freeODBC/)
+
+Thanks!
+ -Tom Fosdick

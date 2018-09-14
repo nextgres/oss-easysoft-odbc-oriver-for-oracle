@@ -8,29 +8,20 @@ SQLAllocHandle.c:SQLRETURN _SQLAllocHandle(
 SQLAllocHandle.c:SQLRETURN SQL_API SQLAllocHandle( 
 SQLAllocHandle.c:    return _SQLAllocHandle( HandleType, InputHandle, OutputHandlePtr );
 SQLGetConnectAttr.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
-SQLGetConnectAttr.c: * $Log: grep_for_funcs,v $
-SQLGetConnectAttr.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
-SQLGetConnectAttr.c: * second try, importing code into directories
-SQLGetConnectAttr.c: *
+SQLGetConnectAttr.c: * $Log: SQLGetConnectAttr.c,v $
 SQLGetConnectAttr.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
 SQLGetConnectAttr.c:SQLRETURN SQL_API SQLGetConnectAttr(
 SQLBrowseConnect.c: * _SQLDriverConnect -> ood_SQLDriverConnect
 SQLBrowseConnect.c:        status= ood_SQLDriverConnect(ConnectionHandle,NULL,
 SQLDriverConnect.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
-SQLDriverConnect.c: * $Log: grep_for_funcs,v $
-SQLDriverConnect.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
-SQLDriverConnect.c: * second try, importing code into directories
-SQLDriverConnect.c: *
+SQLDriverConnect.c: * $Log: SQLDriverConnect.c,v $
 SQLDriverConnect.c: * _SQLDriverConnect -> ood_SQLDriverConnect
 SQLDriverConnect.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
 SQLDriverConnect.c:SQLRETURN ood_SQLDriverConnect(
 SQLDriverConnect.c:SQLRETURN SQL_API SQLDriverConnect(
 SQLDriverConnect.c:    return ood_SQLDriverConnect(ConnectionHandle,WindowHandle,
 SQLBrowseConnect.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
-SQLBrowseConnect.c: * $Log: grep_for_funcs,v $
-SQLBrowseConnect.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
-SQLBrowseConnect.c: * second try, importing code into directories
-SQLBrowseConnect.c: *
+SQLBrowseConnect.c: * $Log: SQLBrowseConnect.c,v $
 SQLBrowseConnect.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
 SQLBrowseConnect.c:SQLRETURN SQL_API SQLBrowseConnect(
 SQLDisconnect.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
@@ -73,10 +64,7 @@ SQLGetInfo.c: *
 SQLGetInfo.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
 SQLGetInfo.c:SQLRETURN SQL_API SQLGetInfo(
 SQLGetFunctions.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
-SQLGetFunctions.c: * $Log: grep_for_funcs,v $
-SQLGetFunctions.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
-SQLGetFunctions.c: * second try, importing code into directories
-SQLGetFunctions.c: *
+SQLGetFunctions.c: * $Log: SQLGetFunctions.c,v $
 SQLGetFunctions.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
 SQLGetFunctions.c:SQLRETURN SQL_API SQLGetFunctions(
 SQLGetFunctions.c: * Added SQLGetTypeInfo
@@ -102,10 +90,7 @@ SQLSetEnvAttr.c: *
 SQLSetEnvAttr.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
 SQLSetEnvAttr.c:SQLRETURN SQL_API SQLSetEnvAttr(
 SQLSetConnectAttr.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $
-SQLSetConnectAttr.c: * $Log: grep_for_funcs,v $
-SQLSetConnectAttr.c: * Revision 1.1.1.1  2002/02/11 19:48:06  dbox
-SQLSetConnectAttr.c: * second try, importing code into directories
-SQLSetConnectAttr.c: *
+SQLSetConnectAttr.c: * $Log: SQLSetConnectAttr.c,v $
 SQLSetConnectAttr.c:static char const rcsid[]= "$RCSfile: grep_for_funcs,v $ $Revision: 1.1.1.1 $";
 SQLSetConnectAttr.c:SQLRETURN SQL_API SQLSetConnectAttr(
 SQLGetStmtAttr.c: * $Id: grep_for_funcs,v 1.1.1.1 2002/02/11 19:48:06 dbox Exp $

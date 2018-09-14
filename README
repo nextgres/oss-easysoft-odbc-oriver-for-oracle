@@ -1,0 +1,102 @@
+                           ===========================
+                           Easysoft Oracle ODBC Driver
+                           ===========================
+
+For installation and configuratoion instructions please refer to the INSTALL 
+file.
+
+Prerequisites
+*************
+
+The prerequisites for building the Oracle ODBC Driver as as follows.
+
+ o Oracle Call Interface header files.
+   The OCI headers are usually located in $ORACLE_HOME/rdmbs/demo of the 
+   server.
+   You may also require the header files from $ORACLE_HOME/network/public
+   and $ORACLE_HOME/plsql/public
+
+ o libclntsh, the main Oracle client library, or its constituents.
+   libclntsh is normally located in $ORACLE_HOME/lib; if libclntsh.so is not 
+   present you may well be able to build it using the genclntsh shell script.
+   It is also possible to link the driver with the constituent parts of 
+   libclntsh, although this will require a manual link at this time.
+   Please note that libclntsh.so on some versions of Oracle has an undefined
+   symbol in it (slpmprodstab). Exporting this symbol from the Oracle ODBC
+   library seems to remedy this (but is not a safe solution). The configure
+   option "--enable-symbol-hack=yes" sets the workaround.
+   Oracle version 8.1.5 does not have this problem.
+
+ o A driver manager. unixODBC is recommended (see http://www.unixODBC.org).
+
+ o A POSIX threads library (libpthread) is required for thread safety.
+
+The necessary Oracle files for most platforms are available for free download 
+either as part of their respective server distributions or as part of client 
+distributions from the Oracle Technology Network at http://technet.oracle.com
+
+Some of these downloads can be very large however (hundreds of megabytes). For
+Linux glibc2 users, libclntsh.so is available as part of the "Oracle Libs" 
+package available from www.orasoft.org. 
+It also appears that the necessary header files are the same across platforms,
+so even if your server is on a different OS you may still be able to use the 
+headers.
+
+Obtaining the Source
+********************
+INSTRUCTIONS FOR OBTAINING THE FERMILAB CONTINUATION/FORK/WHATEVER
+
+cvs -d :pserver:anonymous@cdcvs.fnal.gov:/cvs/cd_read_only login
+
+When prompted for a password, type 
+
+anoncvs
+
+To check out the source code, type 
+
+cvs -d :pserver:anonymous@cdcvs.fnal.gov:/cvs/cd_read_only checkout oracle_odbc_driver
+
+ORIGINAL INSTRUCTIONS FROM EASYSOFT: (Still works as of Aug 16 2002)
+
+You can obtain the latest snapshot version of the ODBC driver code either from 
+the easysoft.org web site at www.easysoft.org/projects/oracle/download.phtml, 
+or if you wish to keep up with the "bleeding edge" you can obtain code directly
+from the CVS repository at cvs.easysoft.org as follows.
+
+Login to the Easysoft CVS repository. Use anoncvs as the password. 
+$ cvs -d :pserver:anoncvs@cvs.easysoft.org:/easysoft.org/cvsroot login
+
+Obtain the Oracle ODBC Driver CVS tree: 
+$ cvs -d :pserver:anoncvs@cvs.easysoft.org:/easysoft.org/cvsroot co oracle
+
+After the CVS tree has been downloaded run the following command: 
+$ make -f Makefile.cvs
+
+You can then do ./configure ; make etc. as normal.
+
+NOTE
+****
+
+Please be aware that this code is under constant development, hence the latest
+code from CVS and possibly the latest snapshot release may not function
+correctly and may not even compile correctly on your platform.
+
+If you wish to keep up with the development effort there is a mailing list at 
+easysoft.com. To subscribe, send a message to majordomo@easysoft.com with the 
+words "subscribe oracle" in the body of the mail. We have also set up a 
+newsgroup for more detailed discussion of the development effort, this can be
+accessed on our news server as news://news.easysoft.com/easysoft.beta.oracle
+
+Small bugfixes can be mailed (preferably as unified diffs) to 
+tom.fosdick@easysoft.com
+
+MAILING LIST
+************
+
+To keep up to date with the development of the Oracle ODBC driver, send a mail
+containing the text "subscribe oracle" to majordomo@easysoft.com
+There is also a newsgroup at news://news.easysoft.com/easysoft.beta.oracle 
+for more detailed deiscussion of the development effort
+-
+
+$Id: README,v 1.2 2002/08/16 17:25:39 dbox Exp $
